@@ -1,0 +1,67 @@
+<div>
+  <div class="bg-light">
+    <h1 class="text-dark text-center m-3" style="font-weight: bold; font-size: 50px;">Electrify</h1>
+    <p style="text-align: center; font-style: oblique; font-size: x-large;">
+      Electrify is a consumer electronics retailer. Shop with us!
+    </p>
+  </div>
+
+  <div class="row">
+    <div *ngIf="!authService.loggedIn()" class="col-md">
+      <app-login></app-login>
+      <app-register></app-register>
+    </div>
+
+    <div class="bg-dark col-md" style="margin: auto; align-content: center; margin-right: 20px; margin-left: 20px;">
+
+      <div *ngIf="isLoading" class="spinner-border text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="text-center text-white border rounded p-1 mx-5 my-4">
+        <span><strong>{{ productsTotal }}</strong></span
+        >
+        products are now available in our store!<br />
+        <span
+          ><strong>{{ ordersTotal }}</strong></span
+        >
+        orders has been purchased on our site
+      </div>
+    
+      <div *ngIf="user" class="text-center bg-warning border rounded p-1 mx-5" style="text-align: center;margin-bottom: 30px;">
+        <app-notification-panel [user]="user"></app-notification-panel>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  
+  <!-- The Modal -->
+  <div class="modal" id="mainModal" [ngStyle]="{ display: display }">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header bg-dark text-white text-center">
+          <h4 class="modal-title" [innerHTML]="modalHeader ? modalHeader : 'Success!'"></h4>
+          <button type="button" (click)="onCloseHandled()" class="close" data-dismiss="modal" routerLink="/">
+            &times;
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body" *ngIf="modalBody" [innerHTML]="modalBody"></div>
+        <!-- Modal footer-->
+        <div class="modal-footer">
+          <button type="button" (click)="onCloseHandled()" class="btn btn-dark" data-dismiss="modal" routerLink="/">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+</div>
+
+
+
+
+
